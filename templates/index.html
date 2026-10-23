@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" style="--app-header-height:72px;">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1b8354">
+  <title>صحة - منصة الخدمات الصحية | الاستعلام عن الإجازات المرضية</title>
+  <meta name="description" content="خدمة الاستعلام عن الإجازات المرضية تتيح لك الاستعلام عن حالة طلبك للإجازة ويمكنك طباعتها عن طريق تطبيق صحتي - منصة صحة معتمدة من قبل وزارة الصحة">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/views/assets/css/style.css">
+</head>
+<body>
+  <div class="App">
+    <main>
+      <div>
+        <!-- App Header & Navigation -->
+        <div class="app-header">
+          <nav class="header navbar navbar-expand-lg navbar-light">
+            <div class="header-inner">
+              <div class="nav-container">
+                <!-- Brand Logo (Always visible on mobile & desktop) -->
+                <div class="header-brand-wrap">
+                  <a class="navbar-brand" href="#/">
+                    <img alt="شعار صحة" class="logo" src="views/assets/images/seha.png"/>
+                  </a>
+                </div>
+
+                <!-- Navigation Links & Actions -->
+                <div class="navbar-collapse collapse" id="responsive-navbar-nav">
+                  <div class="header-section--tabs navbar-nav">
+                    <a class="link nav-link" href="#/">الرئيسية</a>
+                    <a class="link nav-link" href="#/cms/services">الخدمات</a>
+                    <a class="link nav-link" href="#/seha-plus">صحة بلس</a>
+                    <a class="link nav-link active" href="#/inquiries">الاستعلامات</a>
+                    <a class="link nav-link" href="#/faq">الأسئلة الشائعة</a>
+                    <a class="link nav-link" href="#/ContactUs">تواصل معنا</a>
+                  </div>
+                  <div class="header-section--actions navbar-nav">
+                    <a class="register nav-link" href="#/account/signup"><p>إنشاء حساب</p></a>
+                    <a class="login nav-link" href="#" role="button" style="cursor:pointer;" tabindex="0">
+                      <img alt="تسجيل الدخول" aria-hidden="true" height="20" src="views/assets/images/login-icon.svg" width="18"/>
+                      <p>تسجيل دخول</p>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Mobile Menu Button (< 992px) -->
+                <button class="navbar-toggler d-lg-none" type="button" id="mobile-menu-btn" aria-label="تبديل القائمة">
+                  <span class="toggler-bar"></span>
+                  <span class="toggler-bar"></span>
+                  <span class="toggler-bar"></span>
+                </button>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <!-- Mobile Navigation Backdrop Overlay -->
+        <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+
+        <!-- Scroll To Top Button -->
+        <button id="top-button" style="display:none" aria-label="الرجوع للأعلى">
+          <svg height="18.5" viewBox="0 0 14.4 18.5" width="14.4" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.862,11.37,14.381,6.1a1.7,1.7,0,0,1,2.355,0l5.54,5.272a1.555,1.555,0,0,1,0,2.271,1.738,1.738,0,0,1-2.376,0l-2.649-2.528V22.519a1.684,1.684,0,0,1-3.364,0V11.113l-2.649,2.534a1.738,1.738,0,0,1-2.376,0,1.561,1.561,0,0,1,0-2.276Z" fill="#ffffff" transform="translate(-8.369 -5.625)"></path>
+          </svg>
+        </button>
+
+        <!-- Breadcrumb Row -->
+        <div class="page-content-breadcrumb-row">
+          <div class="page-content-breadcrumb-row__inner">
+            <div class="warp-breadcrumb" data-testid="breadcrumb">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="https://seha.sa/">الرئيسية</a></li>
+                  <li class="breadcrumb-item"><a href="https://seha.sa/inquiries">الاستعلامات</a></li>
+                  <li aria-current="page" class="breadcrumb-item active">الإجازات المرضية</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inquiry Main Section -->
+        <div class="sl-inquiry" dir="rtl">
+          <section class="sl-inquiry__hero">
+            <div class="sl-inquiry__hero-inner">
+              <h1>الإجازات المرضية</h1>
+              <p>خدمة الاستعلام عن الإجازات المرضية تتيح لك الاستعلام عن حالة طلبك للإجازة ويمكنك طباعتها عن طريق تطبيق صحتي</p>
+            </div>
+          </section>
+
+          <!-- Main Inquiry Card Wrapper -->
+          <div class="sl-inquiry-card-wrapper">
+            <div class="sl-inquiry__card" id="sl-card">
+              <h2 class="sl-inquiry__card-title">الاستعلام عن إجازة مرضية</h2>
+
+            <!-- Top alert for validation errors -->
+            <p class="sl-alert sl-alert--top" id="sl-alert-top" style="display:none;"></p>
+
+            <!-- Service Code Field -->
+            <div class="sl-field">
+              <label for="sl-serial">رمز الخدمة</label>
+              <input id="sl-serial" type="text" maxlength="20" placeholder="أدخل رمز الخدمة" autocomplete="off" spellcheck="false">
+            </div>
+
+            <!-- National ID / Iqama Field -->
+            <div class="sl-field">
+              <label for="sl-id">رقم الهوية / الإقامة</label>
+              <input id="sl-id" type="text" maxlength="10" inputmode="numeric" pattern="\d*" placeholder="أدخل رقم الهوية / الإقامة" autocomplete="off">
+            </div>
+
+            <!-- Bottom alert for server errors / not found -->
+            <div class="sl-alert sl-alert--bottom" id="sl-alert-bottom" style="display:none;"></div>
+
+            <!-- Results Section for Success -->
+            <div class="sl-results" id="sl-results" style="display:none;">
+              <div class="sl-results__item">
+                <span>الاسم</span>
+                <b id="res-name">-</b>
+              </div>
+
+              <div class="sl-results__item">
+                <span>تبدأ من</span>
+                <b id="res-start">-</b>
+              </div>
+              <div class="sl-results__item">
+                <span>وحتى</span>
+                <b id="res-end">-</b>
+              </div>
+              <div class="sl-results__item">
+                <span>المدة بالأيام</span>
+                <b id="res-days">-</b>
+              </div>
+              <div class="sl-results__item">
+                <span>اسم الطبيب</span>
+                <b id="res-doctor">-</b>
+              </div>
+              <div class="sl-results__item">
+                <span>المسمى الوظيفي</span>
+                <b id="res-specialty">-</b>
+              </div>
+            </div>
+
+            <!-- Action Buttons Container -->
+            <div class="sl-actions" id="sl-actions">
+              <button class="sl-btn sl-btn--primary" id="btn-inquire" type="button">
+                <span class="sl-search-icon" id="sl-search-icon" aria-hidden="true">
+                  <img alt="بحث" src="views/assets/images/search-icon.svg">
+                </span>
+                <span id="btn-inquire-text">استعلام</span>
+              </button>
+              <a class="sl-btn sl-btn--outline" id="btn-back" href="#/inquiries" style="display:none;">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                  <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                رجوع للاستعلامات
+              </a>
+              <button class="sl-btn sl-btn--primary" id="btn-new-inquire" type="button" style="display:none;">
+                <span class="sl-search-icon" aria-hidden="true">
+                  <img alt="بحث" src="views/assets/images/search-icon.svg">
+                </span>
+                استعلام جديد
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-container container-fluid" dir="rtl">
+          <div class="footer">
+            <div class="about-seha section">
+              <h3 class="heading"><span class="heading-label">عن صحة</span></h3>
+              <ul class="links-wrapepr about-seha__list">
+                <li class="inquiry-li"><a class="nav-link" href="#/">عن صحة</a></li>
+                <li class="inquiry-li"><button class="nav-link" style="background:none;border:none;padding:0;cursor:pointer">المنظومة الصحية</button></li>
+                <li class="inquiry-li"><button class="nav-link" style="background:none;border:none;padding:0;cursor:pointer">شركاؤنا</button></li>
+              </ul>
+            </div>
+            <div class="footer-services section">
+              <h3 class="heading"><span class="heading-label">الخدمات و المعلومات</span></h3>
+              <ul class="links-wrapepr footer-services__list">
+                <li class="inquiry-li"><a class="nav-link" href="#/cms/services">الخدمات</a></li>
+                <li class="inquiry-li"><a class="nav-link" href="#/seha-plus">صحة بلس</a></li>
+                <li class="inquiry-li"><a class="nav-link" href="#/inquiries">الاستعلامات</a></li>
+                <li class="inquiry-li"><a class="nav-link" href="#/faq">الأسئلة الشائعة</a></li>
+                <li class="inquiry-li"><a class="nav-link" href="#/environmental-impact">الأثر البيئي</a></li>
+              </ul>
+            </div>
+            <div class="footer-contact section">
+              <h3 class="heading"><span class="heading-label">تواصل معنا</span></h3>
+              <div class="footer-contact__values">
+                <div class="contact-link-row">
+                  <a aria-label="Phone" class="contact-icon-btn contact-icon-btn--phone" href="tel:920002005">
+                    <span class="contact-icon-leading"><img alt="الهاتف" aria-hidden="true" src="views/assets/images/phone-icon.png"/></span>
+                  </a>
+                  <a class="contact-link-text" href="tel:920002005">920002005</a>
+                </div>
+                <div class="contact-link-row">
+                  <a aria-label="Email" class="contact-icon-btn contact-icon-btn--email" href="mailto:support@seha.sa">
+                    <span class="contact-icon-leading"><img alt="البريد الإلكتروني" aria-hidden="true" src="views/assets/images/email-icon.png"/></span>
+                  </a>
+                  <a class="contact-link-text" href="mailto:support@seha.sa">support@seha.sa</a>
+                </div>
+                <div class="contact-link-row">
+                  <a aria-label="WhatsApp" class="contact-icon-btn contact-icon-btn--whatsapp" href="https://wa.me/920002005" rel="noreferrer" target="_blank">
+                    <span class="contact-icon-leading"><img alt="واتساب" aria-hidden="true" src="views/assets/images/whatsapp-icon.png"/></span>
+                  </a>
+                  <a class="contact-link-text" href="https://wa.me/920002005" rel="noreferrer" target="_blank">920002005</a>
+                </div>
+                <div class="contact-hours-row">
+                  <span aria-hidden="true" class="contact-icon-btn">
+                    <span class="contact-icon-leading"><img alt="أوقات العمل" src="views/assets/images/working-hours-icon.svg"/></span>
+                  </span>
+                  <span class="contact-hours-text">أوقات العمل: الأحد حتى الخميس
+8 ص - 11 م</span>
+                </div>
+              </div>
+            </div>
+            <div class="footer-social-access section">
+              <div class="footer-follow">
+                <h3 class="heading"><span class="heading-label">تابعنا على</span></h3>
+                <div class="social footer-follow__icons">
+                  <a aria-label="YouTube" class="social-icon-btn social-icon-btn--youtube" href="https://www.youtube.com/channel/UCb9ZrS2YcriYqIPIHNp9wcQ" target="_blank" rel="noopener">
+                    <img alt="يوتيوب" src="views/assets/images/youtube-icon.png"/>
+                  </a>
+                  <a aria-label="X" class="social-icon-btn social-icon-btn--x" href="https://twitter.com/seha_services" target="_blank" rel="noopener">
+                    <img alt="منصة إكس" src="views/assets/images/x.png"/>
+                  </a>
+                </div>
+              </div>
+              <div class="footer-access">
+                <h3 class="heading"><span class="heading-label">أدوات الاتاحة والوصول</span></h3>
+                <div class="footer-access__items">
+                  <button aria-label="أدوات الاتاحة والوصول" class="footer-access__btn">
+                    <img alt="أدوات الإتاحة والوصول" aria-hidden="true" height="20" src="views/assets/images/accessibility-icon.svg" width="20"/>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div class="footer-note-wrapper">
+              <p>منصة <span class="copyright-brand">صحة</span> معتمدة من قبل وزارة الصحة © 2026</p>
+              <p class="footer-poweredby">
+                <img alt="لين" class="footer-poweredby__icon" src="views/assets/images/lean-logo.png"/>
+                بدعم وتطوير لين لخدمات الأعمال
+              </p>
+              <ul class="footer-legal-links">
+                <li><a href="https://www.seha.sa/Content/LandingPages/UserManual.pdf" target="_blank">دليل الاستخدام</a></li>
+                <li><a href="#/terms-of-use">الشروط و الاحكام</a></li>
+                <li><a href="#/privacy-policy">سياسة الخصوصية</a></li>
+              </ul>
+            </div>
+            <div class="contact">
+              <img alt="شعار شركة لين" class="lean-logo" src="views/assets/images/lean-logo.png"/>
+              <span class="contact__divider"></span>
+              <img alt="شعار وزارة الصحة" class="moh-logo" src="views/assets/images/moh-logo.png"/>
+              <span class="contact__divider"></span>
+              <img alt="شعار عام الذكاء الاصطناعي" class="ai-logo" src="views/assets/images/ai-logo.png"/>
+              <span class="contact__divider"></span>
+              <img alt="شعار رؤية المملكة 2030" class="vision2030-logo" src="views/assets/images/vision2030-logo.png"/>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="seha-modal-backdrop" id="login-modal" style="display:none;">
+      <div class="seha-modal">
+        <div class="seha-modal__header">
+          <h3 class="seha-modal__title">تسجيل الدخول إلى منصة صحة</h3>
+          <button type="button" class="seha-modal__close" id="btn-close-login">&times;</button>
+        </div>
+        <div class="seha-modal__body">
+          <p style="margin-top:0;">يمكنك تسجيل الدخول عبر النفاذ الوطني الموحد للوصول إلى كافة الخدمات الصحية والاستعلامات المعتمدة.</p>
+          <div style="background:#f3f4f6; border-radius:8px; padding:16px; text-align:center; margin-bottom:12px;">
+            <p style="font-weight:700; color:#161616; margin:0 0 8px 0;">تسجيل الدخول عبر النفاذ الوطني الموحد</p>
+            <button type="button" class="sl-btn sl-btn--primary" id="btn-modal-nafath" style="width:100%; height:42px;">الدخول بواسطة تطبيق نفاذ</button>
+          </div>
+        </div>
+        <div class="seha-modal__footer">
+          <button type="button" class="sl-btn sl-btn--outline" id="btn-cancel-login">إغلاق</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility Modal -->
+    <div class="seha-modal-backdrop" id="access-modal" style="display:none;">
+      <div class="seha-modal">
+        <div class="seha-modal__header">
+          <h3 class="seha-modal__title">أدوات الإتاحة وسهولة الوصول</h3>
+          <button type="button" class="seha-modal__close" id="btn-close-access">&times;</button>
+        </div>
+        <div class="seha-modal__body">
+          <p>تلتزم منصة صحة بأعلى معايير الإتاحة الرقمية وسهولة التصفح لجميع فئات المستخدمين.</p>
+          <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
+            <button type="button" class="sl-btn sl-btn--outline" id="btn-font-increase">تكبير الخط (+)</button>
+            <button type="button" class="sl-btn sl-btn--outline" id="btn-font-reset">الحجم الافتراضي</button>
+            <button type="button" class="sl-btn sl-btn--outline" id="btn-contrast-toggle">عكس التباين</button>
+          </div>
+        </div>
+        <div class="seha-modal__footer">
+          <button type="button" class="sl-btn sl-btn--outline" id="btn-cancel-access">إغلاق</button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/main.js"></script>
+
+  <!-- ElevenLabs Conversational AI Widget -->
+  <elevenlabs-convai dir="ltr" style="position: fixed; bottom: 30px; right: 30px; z-index: 99999; pointer-events: auto;">
+    <template shadowrootmode="open">
+      <style>
+        :host {
+          display: block;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          direction: ltr;
+        }
+        .widget-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+        }
+        .pill {
+          display: flex;
+          align-items: center;
+          background-color: #ffffff;
+          padding: 10px;
+          border-radius: 9999px;
+          gap: 8px;
+          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+          cursor: pointer;
+          border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .pill:hover {
+          transform: scale(1.03) translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .orb-container {
+          width: 37px;
+          height: 37px;
+          border-radius: 50%;
+          overflow: hidden;
+          position: relative;
+          background: #011535;
+        }
+        .orb-visual, .orb-wave-1, .orb-wave-2 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+        .orb-visual {
+          background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 65%),
+                      conic-gradient(from 120deg at 50% 50%, 
+                        #011535 0%, 
+                        #153363 15%, 
+                        #2c6ab0 38%, 
+                        #ffffff 50%, 
+                        #2c6ab0 62%, 
+                        #153363 85%, 
+                        #011535 100%
+                      );
+          animation: orb-spin 10s linear infinite, orb-fluid 3s ease-in-out infinite alternate;
+          mix-blend-mode: normal;
+        }
+        .orb-wave-1 {
+          background: conic-gradient(from 0deg at 50% 50%, 
+                        transparent 0%, 
+                        rgba(44, 106, 176, 0.4) 30%, 
+                        rgba(255, 255, 255, 0.6) 50%, 
+                        rgba(44, 106, 176, 0.4) 70%, 
+                        transparent 100%
+                      );
+          animation: orb-spin-reverse 7s linear infinite, orb-fluid 4s ease-in-out infinite alternate-reverse;
+          mix-blend-mode: screen;
+        }
+        .orb-wave-2 {
+          background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 60%);
+          animation: orb-pulse 2s ease-in-out infinite alternate;
+        }
+        .btn {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          background-color: #306db5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+          padding: 0;
+          outline: none;
+        }
+        .btn:hover {
+          background-color: #1f4e85;
+        }
+        .btn:active {
+          transform: scale(0.95);
+        }
+        .btn svg {
+          width: 17px;
+          height: 17px;
+          fill: currentColor;
+        }
+        .footer-text {
+          font-size: 10px;
+          color: #9ca3af;
+          font-weight: 300;
+          text-align: center;
+          margin: 0;
+          letter-spacing: 0.1px;
+          opacity: 0.85;
+          text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+        .footer-text a {
+          color: #9ca3af;
+          text-decoration: underline;
+          font-weight: 300;
+          transition: color 0.2s ease;
+        }
+        .footer-text a:hover {
+          color: #306db5;
+        }
+        @keyframes orb-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes orb-spin-reverse {
+          0% { transform: rotate(360deg); }
+          100% { transform: rotate(0deg); }
+        }
+        @keyframes orb-fluid {
+          0% { border-radius: 46% 54% 50% 50% / 50% 46% 54% 50%; }
+          50% { border-radius: 54% 46% 52% 48% / 48% 54% 46% 52%; }
+          100% { border-radius: 50% 50% 46% 54% / 54% 46% 52% 48%; }
+        }
+        @keyframes orb-pulse {
+          0% { transform: scale(0.92); opacity: 0.5; }
+          100% { transform: scale(1.08); opacity: 1; }
+        }
+      </style>
+      <div class="widget-wrapper">
+        <div class="pill">
+          <div class="orb-container">
+            <div class="orb-wave-1"></div>
+            <div class="orb-wave-2"></div>
+            <div class="orb-visual"></div>
+          </div>
+          <button class="btn" aria-label="Start Voice Chat">
+            <svg viewBox="0 0 19 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 6.75C1.5 4.26472 3.51472 2.25 6 2.25H12C14.4853 2.25 16.5 4.26472 16.5 6.75V11.25C16.5 13.7353 14.4853 15.75 12 15.75H2.25C1.83579 15.75 1.5 15.4142 1.5 15V6.75ZM6 9.9375C5.48223 9.9375 5.0625 9.51777 5.0625 9C5.0625 8.48223 5.48223 8.0625 6 8.0625C6.51777 8.0625 6.9375 8.48223 6.9375 9C6.9375 9.51777 6.51777 9.9375 6 9.9375ZM9 9.9375C8.48223 9.9375 8.0625 9.51777 8.0625 9C8.0625 8.48223 8.48223 8.0625 9 8.0625C9.51777 8.0625 9.9375 8.48223 9.9375 9C9.9375 9.51777 9.51777 9.9375 9 9.9375ZM11.0625 9C11.0625 9.51777 11.4822 9.9375 12 9.9375C12.5178 9.9375 12.9375 9.51777 12.9375 9C12.9375 8.48223 12.5178 8.0625 12 8.0625C11.4822 8.0625 11.0625 8.48223 11.0625 9Z"></path>
+            </svg>
+          </button>
+        </div>
+        <p class="footer-text">
+          Powered by ElevenLabs <a href="#" target="_blank">Agents</a>
+        </p>
+      </div>
+    </template>
+  </elevenlabs-convai>
+
+  <script>
+    (function() {
+      const el = document.querySelector('elevenlabs-convai');
+      if (el && !el.shadowRoot) {
+        const temp = el.querySelector('template');
+        if (temp) {
+          const shadow = el.attachShadow({ mode: 'open' });
+          shadow.appendChild(temp.content.cloneNode(true));
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: seha-python
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SEHA_WORKER_URL
+        sync: false
+      - key: SEHA_API_SECRET
+        sync: false
